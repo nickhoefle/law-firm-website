@@ -29,6 +29,7 @@ const AdminPortal = () => {
                 navbarFont,
                 navbarBackgroundColor
             });
+            alert('Settings updated!');
         } catch (error) {
             console.error('Error updating settings:', error);
         }
@@ -39,18 +40,36 @@ const AdminPortal = () => {
     return (
         <div>
             <h2>Admin Portal</h2>
-            <label>
-                Navbar Height:
-                <input value={navbarHeight} onChange={(e) => setNavbarHeight(e.target.value)} />
-            </label>
-            <label>
-                Navbar Font:
-                <input value={navbarFont} onChange={(e) => setNavbarFont(e.target.value)} />
-            </label>
-            <label>
-                Navbar Background Color:
-                <input value={navbarBackgroundColor} onChange={(e) => setNavbarBackgroundColor(e.target.value)} />
-            </label>
+            <div>
+                <label>
+                    Navbar Height:
+                    <input
+                        type="text"
+                        value={navbarHeight}
+                        onChange={(e) => setNavbarHeight(e.target.value)}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Navbar Font:
+                    <input
+                        type="text"
+                        value={navbarFont}
+                        onChange={(e) => setNavbarFont(e.target.value)}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Navbar Background Color:
+                    <input
+                        type="color"
+                        value={navbarBackgroundColor}
+                        onChange={(e) => setNavbarBackgroundColor(e.target.value)}
+                    />
+                </label>
+            </div>
             <button onClick={handleUpdate}>Update Settings</button>
         </div>
     );
