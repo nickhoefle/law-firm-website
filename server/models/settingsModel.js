@@ -4,6 +4,9 @@ const SettingsSchema = new mongoose.Schema({
     navbarHeight: { type: String, default: '60px' },
     navbarFont: { type: String, default: 'Arial, sans-serif' },
     navbarBackgroundColor: { type: String, default: 'blue' },
+    navbarLinks: [String],
+    navbarLinksBlockWidth: { type: Number, },  
+    navbarLinksHorizontalPlacement: { type: String, default: 'left' }
 });
 
 module.exports = mongoose.model('Settings', SettingsSchema);

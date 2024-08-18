@@ -1,26 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-const Navbar = () => {
-    const [settings, setSettings] = useState(null);
-
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/api/settings');
-                setSettings(response.data);
-            } catch (error) {
-                console.error('Error fetching settings:', error);
-            }
-        };
-        fetchSettings();
-    }, []);
-
-    if (!settings) return <div>Loading...</div>;
-
+const Navbar = ({ settings }) => {
     return (
-        <nav style={{ height: settings.navbarHeight, backgroundColor: settings.navbarBackgroundColor, fontFamily: settings.navbarFont }}>
-            <h1>Law Firm</h1>
+        <nav 
+            style={{ 
+                height: settings.navbarHeight, 
+                backgroundColor: settings.navbarBackgroundColor, 
+                fontFamily: settings.navbarFont 
+            }}
+        >
+            <h1 style={{ margin: '0' }}>Law Firm</h1>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: settings.navbarLinksHorizontalPlacement,
+                }}
+            >
+                <ul 
+                    className='navbar-links'
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        width: settings.navbarLinksBlockWidth ? `${settings.navbarLinksBlockWidth}px` : 'auto',
+                    }}
+                >
+                    {settings.navbarLinks.map((link, index) => (
+                        <li key={index}>
+                            <a href={`/${link.toLowerCase().replace(' ', '-')}`}>{link}</a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </nav>
     );
 };
