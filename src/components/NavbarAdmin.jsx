@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { fontList } from '../fonts/fontList';
 
 const NavbarAdmin = ({ settings, onSettingsChange }) => {
     const [localSettings, setLocalSettings] = useState(settings);
@@ -70,11 +71,16 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
             </label>
             <label>
                 Navbar Font:
-                <input
-                    type="text"
+                <select
                     value={localSettings.navbarFont}
                     onChange={handleInputChange('navbarFont')}
-                />
+                >
+                    {fontList.map((font, index) => (
+                        <option key={index} value={font}>
+                            {font}
+                        </option>
+                    ))}
+                </select>
             </label>
             <label>
                 Navbar Background Color:
