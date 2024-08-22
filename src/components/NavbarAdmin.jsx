@@ -58,6 +58,14 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
         });
     };
 
+    const handleCheckboxChange = (key) => (e) => {
+        const value = e.target.checked;
+        setLocalSettings({
+            ...localSettings,
+            [key]: value
+        });
+    };
+
     return (
         <div>
             <h2>Admin Portal</h2>
@@ -135,6 +143,14 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                         Right
                     </label>
                 </div>
+            </label>
+            <label>
+                Snap Navbar Links to Middle Vertically:
+                <input
+                    type="checkbox"
+                    checked={localSettings.navbarLinksSnapMiddleVertically}
+                    onChange={handleCheckboxChange('navbarLinksSnapMiddleVertically')}
+                />
             </label>
             <label>
                 Navbar Links Block Width (px):

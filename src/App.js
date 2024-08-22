@@ -12,7 +12,8 @@ const useSettings = () => {
         navbarBackgroundColor: '#0000FF',
         navbarLinks: ['Home', 'About', 'Contact'],
         navbarLinksHorizontalPlacement: 'center',
-        navbarLinksBlockWidth: '150px'
+        navbarLinksBlockWidth: '150px',
+        navbarLinksSnapMiddleHorizontally: false,
     });
 
     useEffect(() => {

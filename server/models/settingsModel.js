@@ -6,7 +6,8 @@ const SettingsSchema = new mongoose.Schema({
     navbarBackgroundColor: { type: String, default: 'blue' },
     navbarLinks: [String],
     navbarLinksBlockWidth: { type: Number, },  
-    navbarLinksHorizontalPlacement: { type: String, default: 'left' }
+    navbarLinksHorizontalPlacement: { type: String, default: 'left' },
+    navbarLinksSnapMiddleVertically: { type: Boolean }
 });
 
 module.exports = mongoose.model('Settings', SettingsSchema);
