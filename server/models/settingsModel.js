@@ -7,7 +7,8 @@ const SettingsSchema = new mongoose.Schema({
     navbarLinks: [String],
     navbarLinksBlockWidth: { type: Number, },  
     navbarLinksHorizontalPlacement: { type: String, default: 'left' },
-    navbarLinksSnapMiddleVertically: { type: Boolean }
+    navbarLinksSnapMiddleVertically: { type: Boolean },
+    navbarLinksVerticalTopPercent: { type: Number, default: 50 }
 });
 
 module.exports = mongoose.model('Settings', SettingsSchema);

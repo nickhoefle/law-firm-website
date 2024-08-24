@@ -13,7 +13,8 @@ const useSettings = () => {
         navbarLinks: ['Home', 'About', 'Contact'],
         navbarLinksHorizontalPlacement: 'center',
         navbarLinksBlockWidth: '150px',
-        navbarLinksSnapMiddleHorizontally: false,
+        navbarLinksSnapMiddleVertically: false,
+        navbarLinksVerticalTopPercent: 55,
     });
 
     useEffect(() => {

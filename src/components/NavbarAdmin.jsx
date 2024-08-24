@@ -14,7 +14,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
         };
 
         // Debounce update to avoid too many requests
-        const timer = setTimeout(updateServer, 500);
+        const timer = setTimeout(updateServer, 250);
         return () => clearTimeout(timer);
     }, [localSettings, onSettingsChange]);
 
@@ -64,6 +64,24 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
             ...localSettings,
             [key]: value
         });
+    };
+
+    const increaseVerticalTopPercent = () => {
+        if (localSettings.navbarLinksVerticalTopPercent < 100) {
+            setLocalSettings({
+                ...localSettings,
+                navbarLinksVerticalTopPercent: localSettings.navbarLinksVerticalTopPercent + 1
+            });
+        }
+    };
+
+    const decreaseVerticalTopPercent = () => {
+        if (localSettings.navbarLinksVerticalTopPercent > 0) {
+            setLocalSettings({
+                ...localSettings,
+                navbarLinksVerticalTopPercent: localSettings.navbarLinksVerticalTopPercent - 1
+            });
+        }
     };
 
     return (
@@ -145,14 +163,6 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                 </div>
             </label>
             <label>
-                Snap Navbar Links to Middle Vertically:
-                <input
-                    type="checkbox"
-                    checked={localSettings.navbarLinksSnapMiddleVertically}
-                    onChange={handleCheckboxChange('navbarLinksSnapMiddleVertically')}
-                />
-            </label>
-            <label>
                 Navbar Links Block Width (px):
                 <input
                     type="number"
@@ -160,6 +170,31 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                     onChange={handleInputChange('navbarLinksBlockWidth')}
                 />
             </label>
+            <br />
+            <label>
+                Snap Navbar Links to Middle Vertically:
+                <input
+                    type="checkbox"
+                    checked={localSettings.navbarLinksSnapMiddleVertically}
+                    onChange={handleCheckboxChange('navbarLinksSnapMiddleVertically')}
+                />
+            </label>
+            <br />
+            { !localSettings.navbarLinksSnapMiddleVertically && (
+                <>
+                    <label>Adjust Navbar Vertical Placement</label>
+                    <button
+                        onClick={increaseVerticalTopPercent}
+                    >
+                        +
+                    </button>
+                    <button
+                        onClick={decreaseVerticalTopPercent}
+                    >
+                        -
+                    </button>
+                </>
+            ) }
         </div>
     );
 };

@@ -24,7 +24,7 @@ const Navbar = ({ settings }) => {
                             position: 'absolute',
                             width: '100%',
                             display: 'flex',
-                            top: settings.navbarLinksSnapMiddleVertically ? '50%' : '0',
+                            top: settings.navbarLinksSnapMiddleVertically ? '50%' : settings.navbarLinksVerticalTopPercent +'%',
                             transform: settings.navbarLinksSnapMiddleVertically ? 'translateY(-50%)' : '',
                             justifyContent: settings.navbarLinksHorizontalPlacement,
                         }}
