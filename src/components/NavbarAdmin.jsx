@@ -117,6 +117,15 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
             />
             <br />
             <label>
+                Navbar Links Font Color:
+                <input
+                    type="color"
+                    value={localSettings.navbarLinksFontColor}
+                    onChange={handleInputChange('navbarLinksFontColor')}
+                />
+            </label>
+            <br />
+            <label>
                 Navbar Background Color:
                 <input
                     type="color"

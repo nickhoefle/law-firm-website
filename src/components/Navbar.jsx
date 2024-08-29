@@ -35,12 +35,19 @@ const Navbar = ({ settings }) => {
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 width: settings.navbarLinksBlockWidth ? `${settings.navbarLinksBlockWidth}px` : 'auto',
-                                fontSize: `${settings.navbarLinksFontSize}px`
+                                fontSize: `${settings.navbarLinksFontSize}px`,
                             }}
                         >
                             {settings.navbarLinks.map((link, index) => (
                                 <li key={index}>
-                                    <a href={`/${link.toLowerCase().replace(' ', '-')}`}>{link}</a>
+                                    <a 
+                                        href={`/${link.toLowerCase().replace(' ', '-')}`}
+                                        style={{
+                                            color: settings.navbarLinksFontColor,
+                                        }}
+                                    >
+                                        {link}
+                                    </a>
                                 </li>
                             ))}
                         </ul>

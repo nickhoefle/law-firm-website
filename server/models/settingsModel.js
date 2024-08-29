@@ -6,6 +6,7 @@ const SettingsSchema = new mongoose.Schema({
     navbarBackgroundColor: { type: String, default: 'blue' },
     navbarLinks: [String],
     navbarLinksFontSize: { type: Number },
+    navbarLinksFontColor: { type: String, default: 'black'},
     navbarLinksBlockWidth: { type: Number, },  
     navbarLinksHorizontalPlacement: { type: String, default: 'left' },
     navbarLinksSnapMiddleVertically: { type: Boolean },
