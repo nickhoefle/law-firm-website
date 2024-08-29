@@ -108,6 +108,14 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                     ))}
                 </select>
             </label>
+            <br />
+            <label>Navbar Links Font Size</label>
+            <input
+                type="number"
+                value={localSettings.navbarLinksFontSize}
+                onChange={handleInputChange('navbarLinksFontSize')}
+            />
+            <br />
             <label>
                 Navbar Background Color:
                 <input

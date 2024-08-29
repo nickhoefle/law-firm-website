@@ -11,6 +11,7 @@ const useSettings = () => {
         navbarFont: 'Arial, sans-serif',
         navbarBackgroundColor: '#0000FF',
         navbarLinks: ['Home', 'About', 'Contact'],
+        navbarLinksFontSize: 14,
         navbarLinksHorizontalPlacement: 'center',
         navbarLinksBlockWidth: '150px',
         navbarLinksSnapMiddleVertically: false,

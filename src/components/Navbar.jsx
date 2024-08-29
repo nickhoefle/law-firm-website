@@ -35,6 +35,7 @@ const Navbar = ({ settings }) => {
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 width: settings.navbarLinksBlockWidth ? `${settings.navbarLinksBlockWidth}px` : 'auto',
+                                fontSize: `${settings.navbarLinksFontSize}px`
                             }}
                         >
                             {settings.navbarLinks.map((link, index) => (
