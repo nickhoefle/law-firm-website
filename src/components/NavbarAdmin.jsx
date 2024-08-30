@@ -133,6 +133,16 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                     onChange={handleInputChange('navbarBackgroundColor')}
                 />
             </label>
+            <br />
+            <label>
+                Enable Box on Navbar Link Hover
+                <input
+                    type="checkbox"
+                    checked={localSettings.navbarLinksBoxHover}
+                    onChange={handleCheckboxChange('navbarLinksBoxHover')}
+                />
+            </label> 
+            <br />       
             <label>
                 Navbar Links:
                 {localSettings.navbarLinks.map((link, index) => (

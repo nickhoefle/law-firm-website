@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 const Navbar = ({ settings }) => {
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    const handleMouseEnter = (index) => {
+        if (settings.navbarLinksBoxHover) {
+            setHoveredIndex(index);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredIndex(null);
+    };
+
+    const linkStyle = (index) => ({
+        color: 'rgb(170, 228, 12)',
+        display: 'inline-block',
+        height: '100%', 
+        lineHeight: settings.navbarHeight, 
+        padding: '0 35px', 
+        boxSizing: 'border-box',
+        textDecoration: 'none',
+        backgroundColor: hoveredIndex === index ? 'blue' : 'transparent',
+    });
+    
     return (
         <div>
             <nav 
@@ -42,9 +65,9 @@ const Navbar = ({ settings }) => {
                                 <li key={index}>
                                     <a 
                                         href={`/${link.toLowerCase().replace(' ', '-')}`}
-                                        style={{
-                                            color: settings.navbarLinksFontColor,
-                                        }}
+                                        style={linkStyle(index)}
+                                        onMouseEnter={() => handleMouseEnter(index)}
+                                        onMouseLeave={handleMouseLeave}
                                     >
                                         {link}
                                     </a>

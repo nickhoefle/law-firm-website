@@ -13,6 +13,7 @@ const useSettings = () => {
         navbarLinks: ['Home', 'About', 'Contact'],
         navbarLinksFontSize: 14,
         navbarLinksFontColor: 'black',
+        navbarLinksBoxHover: false,
         navbarLinksHorizontalPlacement: 'center',
         navbarLinksBlockWidth: '150px',
         navbarLinksSnapMiddleVertically: false,
