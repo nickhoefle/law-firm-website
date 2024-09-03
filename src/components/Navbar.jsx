@@ -22,7 +22,7 @@ const Navbar = ({ settings }) => {
         padding: '0 35px', 
         boxSizing: 'border-box',
         textDecoration: 'none',
-        backgroundColor: hoveredIndex === index ? 'blue' : 'transparent',
+        backgroundColor: hoveredIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent',
     });
     
     return (

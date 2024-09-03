@@ -14,6 +14,7 @@ const useSettings = () => {
         navbarLinksFontSize: 14,
         navbarLinksFontColor: 'black',
         navbarLinksBoxHover: false,
+        navbarLinksBoxHoverColor: 'gray',
         navbarLinksHorizontalPlacement: 'center',
         navbarLinksBlockWidth: '150px',
         navbarLinksSnapMiddleVertically: false,

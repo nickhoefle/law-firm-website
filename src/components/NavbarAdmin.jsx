@@ -142,6 +142,15 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                     onChange={handleCheckboxChange('navbarLinksBoxHover')}
                 />
             </label> 
+            <br />
+            <label>
+                Navbar Link Box Color:
+                <input
+                    type="color"
+                    value={localSettings.navbarLinksBoxHoverColor}
+                    onChange={handleInputChange('navbarLinksBoxHoverColor')}
+                />
+            </label>
             <br />       
             <label>
                 Navbar Links:
