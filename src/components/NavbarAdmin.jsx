@@ -26,10 +26,48 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
         });
     };
 
-    const handleLinksChange = (index) => (e) => {
-        const value = e.target.value;
+    const handleLinkNameChange = (index) => (e) => {
         const updatedLinks = [...localSettings.navbarLinks];
-        updatedLinks[index] = value;
+        updatedLinks[index].name = e.target.value;
+        setLocalSettings({
+            ...localSettings,
+            navbarLinks: updatedLinks
+        });
+    };
+
+    const handleDropdownToggle = (index) => () => {
+        const updatedLinks = [...localSettings.navbarLinks];
+        updatedLinks[index].isDropdownLink = !updatedLinks[index].isDropdownLink;
+        if (!updatedLinks[index].isDropdownLink) {
+            updatedLinks[index].dropdownLinks = [];
+        }
+        setLocalSettings({
+            ...localSettings,
+            navbarLinks: updatedLinks
+        });
+    };
+
+    const handleDropdownLinkChange = (linkIndex, dropdownIndex) => (e) => {
+        const updatedLinks = [...localSettings.navbarLinks];
+        updatedLinks[linkIndex].dropdownLinks[dropdownIndex] = e.target.value;
+        setLocalSettings({
+            ...localSettings,
+            navbarLinks: updatedLinks
+        });
+    };
+
+    const addDropdownLink = (index) => () => {
+        const updatedLinks = [...localSettings.navbarLinks];
+        updatedLinks[index].dropdownLinks.push('');
+        setLocalSettings({
+            ...localSettings,
+            navbarLinks: updatedLinks
+        });
+    };
+
+    const removeDropdownLink = (linkIndex, dropdownIndex) => () => {
+        const updatedLinks = [...localSettings.navbarLinks];
+        updatedLinks[linkIndex].dropdownLinks = updatedLinks[linkIndex].dropdownLinks.filter((_, i) => i !== dropdownIndex);
         setLocalSettings({
             ...localSettings,
             navbarLinks: updatedLinks
@@ -39,11 +77,14 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
     const addLinkInput = () => {
         setLocalSettings({
             ...localSettings,
-            navbarLinks: [...localSettings.navbarLinks, '']
+            navbarLinks: [
+                ...localSettings.navbarLinks,
+                { name: '', isDropdownLink: false, dropdownLinks: [] }
+            ]
         });
     };
 
-    const removeLinkInput = (index) => {
+    const removeLinkInput = (index) => () => {
         const updatedLinks = localSettings.navbarLinks.filter((_, i) => i !== index);
         setLocalSettings({
             ...localSettings,
@@ -141,7 +182,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                     checked={localSettings.navbarLinksBoxHover}
                     onChange={handleCheckboxChange('navbarLinksBoxHover')}
                 />
-            </label> 
+            </label>
             <br />
             <label>
                 Navbar Link Box Color:
@@ -151,21 +192,48 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                     onChange={handleInputChange('navbarLinksBoxHoverColor')}
                 />
             </label>
-            <br />       
+            <br />
             <label>
                 Navbar Links:
                 {localSettings.navbarLinks.map((link, index) => (
-                    <div key={index}>
+                    <div key={index} style={{ marginBottom: '10px' }}>
                         <input
                             type="text"
-                            value={link}
-                            onChange={handleLinksChange(index)}
+                            value={link.name}
+                            placeholder="Link Name"
+                            onChange={handleLinkNameChange(index)}
                         />
-                        <button type="button" onClick={() => removeLinkInput(index)}>Remove</button>
+                        <button type="button" onClick={removeLinkInput(index)}>Remove</button>
+                        <br />
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={link.isDropdownLink}
+                                onChange={handleDropdownToggle(index)}
+                            />
+                            Is Dropdown
+                        </label>
+                        {link.isDropdownLink && (
+                            <div style={{ marginLeft: '20px' }}>
+                                {link.dropdownLinks.map((dropdownLink, dropdownIndex) => (
+                                    <div key={dropdownIndex}>
+                                        <input
+                                            type="text"
+                                            value={dropdownLink}
+                                            placeholder="Dropdown Link"
+                                            onChange={handleDropdownLinkChange(index, dropdownIndex)}
+                                        />
+                                        <button type="button" onClick={removeDropdownLink(index, dropdownIndex)}>Remove</button>
+                                    </div>
+                                ))}
+                                <button type="button" onClick={addDropdownLink(index)}>Add Dropdown Link</button>
+                            </div>
+                        )}
                     </div>
                 ))}
                 <button type="button" onClick={addLinkInput}>Add Link</button>
             </label>
+            <br />
             <label>
                 Navbar Links Horizontal Placement:
                 <div>

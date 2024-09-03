@@ -10,7 +10,7 @@ const useSettings = () => {
         navbarHeight: '60px',
         navbarFont: 'Arial, sans-serif',
         navbarBackgroundColor: '#0000FF',
-        navbarLinks: ['Home', 'About', 'Contact'],
+        navbarLinks: [],
         navbarLinksFontSize: 14,
         navbarLinksFontColor: 'black',
         navbarLinksBoxHover: false,

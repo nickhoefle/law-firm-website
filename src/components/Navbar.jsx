@@ -19,7 +19,7 @@ const Navbar = ({ settings }) => {
         display: 'inline-block',
         height: '100%', 
         lineHeight: settings.navbarHeight, 
-        padding: '0 35px', 
+        padding: '0 20px 0 20px', 
         boxSizing: 'border-box',
         textDecoration: 'none',
         backgroundColor: hoveredIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent',
@@ -62,15 +62,48 @@ const Navbar = ({ settings }) => {
                             }}
                         >
                             {settings.navbarLinks.map((link, index) => (
-                                <li key={index}>
+                                <li 
+                                    key={index}
+                                    onMouseEnter={() => handleMouseEnter(index)}
+                                    onMouseLeave={handleMouseLeave}
+                                    style={{ position: 'relative' }}  
+                                >
                                     <a 
-                                        href={`/${link.toLowerCase().replace(' ', '-')}`}
+                                        href={`/${link.name.toLowerCase().replace(' ', '-')}`}
                                         style={linkStyle(index)}
-                                        onMouseEnter={() => handleMouseEnter(index)}
-                                        onMouseLeave={handleMouseLeave}
                                     >
-                                        {link}
+                                        {link.name}
                                     </a>
+                                    {link.isDropdownLink && hoveredIndex === index && (
+                                        <ul 
+                                            style={{ 
+                                                position: 'absolute',
+                                                top: '100%', 
+                                                left: 0,
+                                                backgroundColor: settings.navbarBackgroundColor,
+                                                listStyle: 'none',
+                                                padding: 0,
+                                                margin: 0
+                                            }}
+                                        >
+                                            {link.dropdownLinks.map((dropdownLink, i) => (
+                                                <li key={i}>
+                                                    <a 
+                                                        href={`/${link.name.toLowerCase()}/${dropdownLink.toLowerCase().replace(' ', '-')}`}
+                                                        style={{
+                                                            padding: '10px 35px',  // Adjust padding as needed
+                                                            display: 'block',
+                                                            color: settings.navbarLinksFontColor,
+                                                            textDecoration: 'none',
+                                                            width: '300px'
+                                                        }}
+                                                    >
+                                                        {dropdownLink}
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </li>
                             ))}
                         </ul>
