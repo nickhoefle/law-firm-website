@@ -57,7 +57,6 @@ const Navbar = ({ settings }) => {
                             style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
-                                width: settings.navbarLinksBlockWidth ? `${settings.navbarLinksBlockWidth}px` : 'auto',
                                 fontSize: `${settings.navbarLinksFontSize}px`,
                             }}
                         >

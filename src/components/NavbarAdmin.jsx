@@ -266,14 +266,6 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                     </label>
                 </div>
             </label>
-            <label>
-                Navbar Links Block Width (px):
-                <input
-                    type="number"
-                    value={localSettings.navbarLinksBlockWidth}
-                    onChange={handleInputChange('navbarLinksBlockWidth')}
-                />
-            </label>
             <br />
             <label>
                 Snap Navbar Links to Middle Vertically:
