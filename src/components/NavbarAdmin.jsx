@@ -158,11 +158,40 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
             />
             <br />
             <label>
-                Navbar Links Font Color:
+                    Navbar Links Font Color:
+                    <input
+                        type="color"
+                        value={localSettings.navbarLinksFontColor}
+                        onChange={handleInputChange('navbarLinksFontColor')}
+                    />
+                </label>
+            <br />
+            <label>
+                Change Navbar Links Font Color on Hover?:
                 <input
-                    type="color"
-                    value={localSettings.navbarLinksFontColor}
-                    onChange={handleInputChange('navbarLinksFontColor')}
+                    type="checkbox"
+                    checked={localSettings.navbarLinksChangeFontColorOnHover}
+                    onChange={handleCheckboxChange('navbarLinksChangeFontColorOnHover')}
+                />
+            </label>
+            <br />
+            { localSettings.navbarLinksChangeFontColorOnHover && (
+                <label>
+                    Navbar Links Font Color on Hover:
+                    <input
+                        type="color"
+                        value={localSettings.navbarLinksFontColorOnHover}
+                        onChange={handleInputChange('navbarLinksFontColorOnHover')}
+                    />
+                </label>
+            )}
+            <br />
+            <label>
+                Enable Box on Navbar Link Hover
+                <input
+                    type="checkbox"
+                    checked={localSettings.navbarLinksBoxHover}
+                    onChange={handleCheckboxChange('navbarLinksBoxHover')}
                 />
             </label>
             <br />

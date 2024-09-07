@@ -15,7 +15,7 @@ const Navbar = ({ settings }) => {
     };
 
     const linkStyle = (index) => ({
-        color: 'rgb(170, 228, 12)',
+        color: hoveredIndex === index && settings.navbarLinksChangeFontColorOnHover ? settings.navbarLinksFontColorOnHover : settings.navbarLinksFontColor,
         display: 'inline-block',
         height: '100%', 
         lineHeight: settings.navbarHeight, 

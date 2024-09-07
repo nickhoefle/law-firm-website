@@ -14,8 +14,9 @@ const SettingsSchema = new mongoose.Schema({
     navbarLinksFontSize: { type: Number },
     navbarLinksFontColor: { type: String, default: 'black'},
     navbarLinksBoxHover: { type: Boolean, default: false },
+    navbarLinksChangeFontColorOnHover: { type: Boolean, default: false},
+    navbarLinksFontColorOnHover: { type: String, default: 'black'},
     navbarLinksBoxHoverColor: { type: String, default: 'gray' },
-    navbarLinksBlockWidth: { type: Number, },  
     navbarLinksHorizontalPlacement: { type: String, default: 'left' },
     navbarLinksSnapMiddleVertically: { type: Boolean },
     navbarLinksVerticalTopPercent: { type: Number, default: 50 }

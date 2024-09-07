@@ -14,9 +14,10 @@ const useSettings = () => {
         navbarLinksFontSize: 14,
         navbarLinksFontColor: 'black',
         navbarLinksBoxHover: false,
+        navbarLinksChangeFontColorOnHover: false,
+        navbarLinksFontColorOnHover: 'black',
         navbarLinksBoxHoverColor: 'gray',
         navbarLinksHorizontalPlacement: 'center',
-        navbarLinksBlockWidth: '150px',
         navbarLinksSnapMiddleVertically: false,
         navbarLinksVerticalTopPercent: 55,
     });
