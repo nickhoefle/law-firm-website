@@ -11,6 +11,7 @@ const useSettings = () => {
         navbarFont: 'Arial, sans-serif',
         navbarBackgroundColor: '#0000FF',
         navbarLinks: [],
+        navbarDropdownLinksIndent: 10,
         navbarLinksSpaceAround: 20,
         navbarLinksFontSize: 14,
         navbarLinksFontColor: 'black',

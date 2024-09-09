@@ -92,7 +92,7 @@ const Navbar = ({ settings }) => {
                                                     <a 
                                                         href={`/${link.name.toLowerCase()}/${dropdownLink.toLowerCase().replace(' ', '-')}`}
                                                         style={{
-                                                            padding: '10px 35px',  // Adjust padding as needed
+                                                            padding: `10px ${settings.navbarDropdownLinksIndent}px`,  
                                                             display: 'block',
                                                             color: settings.navbarLinksFontColor,
                                                             textDecoration: 'none',

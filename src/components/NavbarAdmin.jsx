@@ -273,6 +273,15 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
             </label>
             <br />
             <label>
+                Dropdown Links Indent
+                <input
+                    type="number"
+                    value={localSettings.navbarDropdownLinksIndent}
+                    onChange={handleInputChange('navbarDropdownLinksIndent')}
+                />
+            </label>
+            <br />
+            <label>
                 Navbar Links Horizontal Placement:
                 <div>
                     <label>
