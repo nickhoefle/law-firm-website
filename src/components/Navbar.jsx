@@ -15,11 +15,13 @@ const Navbar = ({ settings }) => {
     };
 
     const linkStyle = (index) => ({
-        color: hoveredIndex === index && settings.navbarLinksChangeFontColorOnHover ? settings.navbarLinksFontColorOnHover : settings.navbarLinksFontColor,
+        color: hoveredIndex === index && settings.navbarLinksChangeFontColorOnHover ? 
+            settings.navbarLinksFontColorOnHover : 
+            settings.navbarLinksFontColor,
         display: 'inline-block',
         height: '100%', 
         lineHeight: settings.navbarHeight, 
-        padding: '0 20px 0 20px', 
+        padding: `0 ${settings.navbarLinksSpaceAround}px 0 ${settings.navbarLinksSpaceAround}px`, 
         boxSizing: 'border-box',
         textDecoration: 'none',
         backgroundColor: hoveredIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent',

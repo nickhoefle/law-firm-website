@@ -11,6 +11,7 @@ const SettingsSchema = new mongoose.Schema({
     navbarFont: { type: String, default: 'Arial, sans-serif' },
     navbarBackgroundColor: { type: String, default: 'blue' },
     navbarLinks: { type: [NavbarLinkSchema], default: [] },
+    navbarLinksSpaceAround: { type: Number, default: 20 },
     navbarLinksFontSize: { type: Number },
     navbarLinksFontColor: { type: String, default: 'black'},
     navbarLinksBoxHover: { type: Boolean, default: false },

@@ -158,6 +158,15 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
             />
             <br />
             <label>
+                Space Around Navbar Links
+                <input
+                    type="number"
+                    value={localSettings.navbarLinksSpaceAround}
+                    onChange={handleInputChange('navbarLinksSpaceAround')}
+                />
+            </label>
+            <br />
+            <label>
                     Navbar Links Font Color:
                     <input
                         type="color"
