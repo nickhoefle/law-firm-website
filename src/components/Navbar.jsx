@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 const Navbar = ({ settings }) => {
     const [hoveredNavbarLinkIndex, setHoveredNavbarLinkIndex] = useState(null);
+    const [hoverNavbarDropdownLinkIndex, setHoverNavbarDropdownLinkIndex] = useState(null);
 
     const handleMouseEnterNavbarLink = (index) => {
         if (settings.navbarLinksBoxHover) {
@@ -10,11 +11,19 @@ const Navbar = ({ settings }) => {
         }
     };
 
+    const handleMouseEnterNavbarDropdownLink = (index) => {
+        setHoverNavbarDropdownLinkIndex(index);
+    };
+
     const handleMouseLeaveNavbarLink = () => {
         setHoveredNavbarLinkIndex(null);
     };
 
-    const linkStyle = (index) => ({
+    const handleMouseLeaveNavbarDropdownLink = () => {
+        setHoverNavbarDropdownLinkIndex(null);
+    };
+
+    const navbarLinkStyle = (index) => ({
         color: hoveredNavbarLinkIndex === index && settings.navbarLinksChangeFontColorOnHover ? 
             settings.navbarLinksFontColorOnHover : 
             settings.navbarLinksFontColor,
@@ -26,6 +35,15 @@ const Navbar = ({ settings }) => {
         textDecoration: 'none',
         backgroundColor: hoveredNavbarLinkIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent',
     });
+
+    const navbarLinksDropdownStyle = (index) => ({
+        padding: `10px ${settings.navbarDropdownLinksIndent}px`,  
+        display: 'block',
+        color: settings.navbarLinksFontColor,
+        textDecoration: 'none',
+        width: '300px',
+        backgroundColor: hoverNavbarDropdownLinkIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent'
+    })
     
     return (
         <div>
@@ -71,7 +89,7 @@ const Navbar = ({ settings }) => {
                                 >
                                     <a 
                                         href={`/${link.name.toLowerCase().replace(' ', '-')}`}
-                                        style={linkStyle(index)}
+                                        style={navbarLinkStyle(index)}
                                     >
                                         {link.name}
                                     </a>
@@ -87,17 +105,16 @@ const Navbar = ({ settings }) => {
                                                 margin: 0
                                             }}
                                         >
-                                            {link.dropdownLinks.map((dropdownLink, i) => (
-                                                <li key={i}>
+                                            {link.dropdownLinks.map((dropdownLink, index) => (
+                                                <li 
+                                                    key={index}
+                                                    onMouseEnter={() => handleMouseEnterNavbarDropdownLink(index)}
+                                                    onMouseLeave={handleMouseLeaveNavbarDropdownLink}
+                                                    style={{ position: 'relative' }}  
+                                                >
                                                     <a 
                                                         href={`/${link.name.toLowerCase()}/${dropdownLink.toLowerCase().replace(' ', '-')}`}
-                                                        style={{
-                                                            padding: `10px ${settings.navbarDropdownLinksIndent}px`,  
-                                                            display: 'block',
-                                                            color: settings.navbarLinksFontColor,
-                                                            textDecoration: 'none',
-                                                            width: '300px'
-                                                        }}
+                                                        style={navbarLinksDropdownStyle(index)}
                                                     >
                                                         {dropdownLink}
                                                     </a>
