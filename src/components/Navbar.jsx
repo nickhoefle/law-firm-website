@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 
 
 const Navbar = ({ settings }) => {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [hoveredNavbarLinkIndex, setHoveredNavbarLinkIndex] = useState(null);
 
-    const handleMouseEnter = (index) => {
+    const handleMouseEnterNavbarLink = (index) => {
         if (settings.navbarLinksBoxHover) {
-            setHoveredIndex(index);
+            setHoveredNavbarLinkIndex(index);
         }
     };
 
-    const handleMouseLeave = () => {
-        setHoveredIndex(null);
+    const handleMouseLeaveNavbarLink = () => {
+        setHoveredNavbarLinkIndex(null);
     };
 
     const linkStyle = (index) => ({
-        color: hoveredIndex === index && settings.navbarLinksChangeFontColorOnHover ? 
+        color: hoveredNavbarLinkIndex === index && settings.navbarLinksChangeFontColorOnHover ? 
             settings.navbarLinksFontColorOnHover : 
             settings.navbarLinksFontColor,
         display: 'inline-block',
@@ -24,7 +24,7 @@ const Navbar = ({ settings }) => {
         padding: `0 ${settings.navbarLinksSpaceAround}px 0 ${settings.navbarLinksSpaceAround}px`, 
         boxSizing: 'border-box',
         textDecoration: 'none',
-        backgroundColor: hoveredIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent',
+        backgroundColor: hoveredNavbarLinkIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent',
     });
     
     return (
@@ -65,8 +65,8 @@ const Navbar = ({ settings }) => {
                             {settings.navbarLinks.map((link, index) => (
                                 <li 
                                     key={index}
-                                    onMouseEnter={() => handleMouseEnter(index)}
-                                    onMouseLeave={handleMouseLeave}
+                                    onMouseEnter={() => handleMouseEnterNavbarLink(index)}
+                                    onMouseLeave={handleMouseLeaveNavbarLink}
                                     style={{ position: 'relative' }}  
                                 >
                                     <a 
@@ -75,7 +75,7 @@ const Navbar = ({ settings }) => {
                                     >
                                         {link.name}
                                     </a>
-                                    {link.isDropdownLink && hoveredIndex === index && (
+                                    {link.isDropdownLink && hoveredNavbarLinkIndex === index && (
                                         <ul 
                                             style={{ 
                                                 position: 'absolute',
