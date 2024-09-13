@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const Navbar = ({ settings }) => {
     const [hoveredNavbarLinkIndex, setHoveredNavbarLinkIndex] = useState(null);
     const [hoverNavbarDropdownLinkIndex, setHoverNavbarDropdownLinkIndex] = useState(null);
@@ -24,24 +23,26 @@ const Navbar = ({ settings }) => {
     };
 
     const navbarLinkStyle = (index) => ({
+        display: 'inline-block',
+        height: '100%', 
+        boxSizing: 'border-box',
+        textDecoration: 'none',
         color: hoveredNavbarLinkIndex === index && settings.navbarLinksChangeFontColorOnHover ? 
             settings.navbarLinksFontColorOnHover : 
             settings.navbarLinksFontColor,
-        display: 'inline-block',
-        height: '100%', 
         lineHeight: settings.navbarHeight, 
         padding: `0 ${settings.navbarLinksSpaceAround}px 0 ${settings.navbarLinksSpaceAround}px`, 
-        boxSizing: 'border-box',
-        textDecoration: 'none',
         backgroundColor: hoveredNavbarLinkIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent',
     });
 
     const navbarLinksDropdownStyle = (index) => ({
-        padding: `10px ${settings.navbarDropdownLinksIndent}px`,  
         display: 'block',
-        color: settings.navbarLinksFontColor,
         textDecoration: 'none',
-        width: '300px',
+        width: 'auto',
+        whiteSpace: 'nowrap',
+        paddingRight: '100px',
+        padding: `10px ${settings.navbarDropdownLinksIndent}px`,  
+        color: settings.navbarLinksFontColor,
         backgroundColor: hoverNavbarDropdownLinkIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent'
     })
     
