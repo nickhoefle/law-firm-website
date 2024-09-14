@@ -12,6 +12,7 @@ const useSettings = () => {
         navbarBackgroundColor: '#0000FF',
         navbarLinks: [],
         navbarDropdownLinksIndent: 10,
+        navbarDropdownLinksVerticalPadding: 10,
         navbarLinksSpaceAround: 20,
         navbarLinksFontSize: 14,
         navbarLinksFontColor: 'black',

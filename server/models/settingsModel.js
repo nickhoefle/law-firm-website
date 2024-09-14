@@ -12,6 +12,7 @@ const SettingsSchema = new mongoose.Schema({
     navbarBackgroundColor: { type: String, default: 'blue' },
     navbarLinks: { type: [NavbarLinkSchema], default: [] },
     navbarDropdownLinksIndent: { type: Number, default: 10 },
+    navbarDropdownLinksVerticalPadding: { type: Number, default: 10 },
     navbarLinksSpaceAround: { type: Number, default: 20 },
     navbarLinksFontSize: { type: Number },
     navbarLinksFontColor: { type: String, default: 'black'},

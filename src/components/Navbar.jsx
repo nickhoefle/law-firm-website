@@ -41,7 +41,9 @@ const Navbar = ({ settings }) => {
         width: 'auto',
         whiteSpace: 'nowrap',
         paddingRight: '100px',
-        padding: `10px ${settings.navbarDropdownLinksIndent}px`,  
+        paddingTop: `${settings.navbarDropdownLinksVerticalPadding}px`,
+        paddingBottom: `${settings.navbarDropdownLinksVerticalPadding}px`, 
+        paddingLeft: `${settings.navbarDropdownLinksIndent}px`,  
         color: settings.navbarLinksFontColor,
         backgroundColor: hoverNavbarDropdownLinkIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent'
     })
