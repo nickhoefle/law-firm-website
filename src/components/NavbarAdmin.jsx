@@ -136,6 +136,44 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                     onChange={handleInputChange('navbarHeight')}
                 />
             </label>
+            <br />
+            <label>
+                Rounded Navbar?:
+                <input
+                    type="checkbox"
+                    checked={localSettings.navbarRoundedBorder}
+                    onChange={handleCheckboxChange('navbarRoundedBorder')}
+                />
+            </label>
+            <br />
+            { localSettings.navbarRoundedBorder && (
+                <div>
+                    <label>Top Left Rounding</label>
+                    <input
+                        type="number"
+                        value={localSettings.navbarTopLeftBorderRadius}
+                        onChange={handleInputChange('navbarTopLeftBorderRadius')}
+                    />
+                    <label>Top Right Rounding</label>
+                    <input
+                        type="number"
+                        value={localSettings.navbarTopRightBorderRadius}
+                        onChange={handleInputChange('navbarTopRightBorderRadius')}
+                    />
+                    <label>Bottom Left Rounding</label>
+                    <input
+                        type="number"
+                        value={localSettings.navbarBottomLeftBorderRadius}
+                        onChange={handleInputChange('navbarBottomLeftBorderRadius')}
+                    />
+                    <label>Bottom Right Rounding</label>
+                    <input
+                        type="number"
+                        value={localSettings.navbarBottomRightBorderRadius}
+                        onChange={handleInputChange('navbarBottomRightBorderRadius')}
+                    />
+                </div>
+            )}
             <label>
                 Navbar Font:
                 <select

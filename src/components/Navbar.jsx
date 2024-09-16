@@ -22,7 +22,7 @@ const Navbar = ({ settings }) => {
         setHoverNavbarDropdownLinkIndex(null);
     };
 
-    const navbarLinkStyle = (index) => ({
+    const navbarLinkStyle = (index, isLastNavbarLink) => ({
         display: 'inline-block',
         height: '100%', 
         boxSizing: 'border-box',
@@ -33,6 +33,22 @@ const Navbar = ({ settings }) => {
         lineHeight: settings.navbarHeight, 
         padding: `0 ${settings.navbarLinksSpaceAround}px 0 ${settings.navbarLinksSpaceAround}px`, 
         backgroundColor: hoveredNavbarLinkIndex === index ? settings.navbarLinksBoxHoverColor : 'transparent',
+        borderTopLeftRadius: hoveredNavbarLinkIndex === 0 && 
+                            settings.navbarLinksHorizontalPlacement === 'left' && 
+                            settings.navbarRoundedBorder ?
+                            `${settings.navbarTopLeftBorderRadius}px` : 0,
+        borderTopRightRadius: isLastNavbarLink && 
+                            settings.navbarLinksHorizontalPlacement === 'right' && 
+                            settings.navbarRoundedBorder ?
+                            `${settings.navbarTopRightBorderRadius}px` : 0,
+        borderBottomLeftRadius: hoveredNavbarLinkIndex === 0 && 
+                            settings.navbarLinksHorizontalPlacement === 'left' && 
+                            settings.navbarRoundedBorder ?
+                            `${settings.navbarBottomLeftBorderRadius}px` : 0,
+        borderBottomRightRadius: isLastNavbarLink && 
+                            settings.navbarLinksHorizontalPlacement === 'right' && 
+                            settings.navbarRoundedBorder ?
+                            `${settings.navbarBottomRightBorderRadius}px` : 0,
     });
 
     const navbarLinksDropdownStyle = (index) => ({
@@ -55,7 +71,11 @@ const Navbar = ({ settings }) => {
                     height: settings.navbarHeight, 
                     backgroundColor: settings.navbarBackgroundColor, 
                     fontFamily: settings.navbarFont,
-                    position: 'relative'
+                    position: 'relative',
+                    borderTopLeftRadius: settings.navbarRoundedBorder ? `${settings.navbarTopLeftBorderRadius}px` : 0,
+                    borderTopRightRadius: settings.navbarRoundedBorder ? `${settings.navbarTopRightBorderRadius}px` : 0,
+                    borderBottomLeftRadius: settings.navbarRoundedBorder ? `${settings.navbarBottomLeftBorderRadius}px` : 0,
+                    borderBottomRightRadius: settings.navbarRoundedBorder ? `${settings.navbarBottomRightBorderRadius}px` : 0
                 }}
             >
                 <div
@@ -83,50 +103,54 @@ const Navbar = ({ settings }) => {
                                 fontSize: `${settings.navbarLinksFontSize}px`,
                             }}
                         >
-                            {settings.navbarLinks.map((link, index) => (
-                                <li 
-                                    key={index}
-                                    onMouseEnter={() => handleMouseEnterNavbarLink(index)}
-                                    onMouseLeave={handleMouseLeaveNavbarLink}
-                                    style={{ position: 'relative' }}  
-                                >
-                                    <a 
-                                        href={`/${link.name.toLowerCase().replace(' ', '-')}`}
-                                        style={navbarLinkStyle(index)}
+                            {settings.navbarLinks.map((link, index) => {
+                                const isLastNavbarLink = index === settings.navbarLinks.length - 1;
+
+                                return (
+                                    <li 
+                                        key={index}
+                                        onMouseEnter={() => handleMouseEnterNavbarLink(index)} 
+                                        onMouseLeave={handleMouseLeaveNavbarLink}
+                                        style={{ position: 'relative' }}  
                                     >
-                                        {link.name}
-                                    </a>
-                                    {link.isDropdownLink && hoveredNavbarLinkIndex === index && (
-                                        <ul 
-                                            style={{ 
-                                                position: 'absolute',
-                                                top: '100%', 
-                                                left: 0,
-                                                backgroundColor: settings.navbarBackgroundColor,
-                                                listStyle: 'none',
-                                                padding: 0,
-                                                margin: 0
-                                            }}
+                                        <a 
+                                            href={`/${link.name.toLowerCase().replace(' ', '-')}`}
+                                            style={navbarLinkStyle(index, isLastNavbarLink)}
                                         >
-                                            {link.dropdownLinks.map((dropdownLink, index) => (
-                                                <li 
-                                                    key={index}
-                                                    onMouseEnter={() => handleMouseEnterNavbarDropdownLink(index)}
-                                                    onMouseLeave={handleMouseLeaveNavbarDropdownLink}
-                                                    style={{ position: 'relative' }}  
-                                                >
-                                                    <a 
-                                                        href={`/${link.name.toLowerCase()}/${dropdownLink.toLowerCase().replace(' ', '-')}`}
-                                                        style={navbarLinksDropdownStyle(index)}
+                                            {link.name}
+                                        </a>
+                                        {link.isDropdownLink && hoveredNavbarLinkIndex === index && (
+                                            <ul 
+                                                style={{ 
+                                                    position: 'absolute',
+                                                    top: '100%', 
+                                                    left: 0,
+                                                    backgroundColor: settings.navbarBackgroundColor,
+                                                    listStyle: 'none',
+                                                    padding: 0,
+                                                    margin: 0
+                                                }}
+                                            >
+                                                {link.dropdownLinks.map((dropdownLink, dropdownIndex) => (
+                                                    <li 
+                                                        key={dropdownIndex}
+                                                        onMouseEnter={() => handleMouseEnterNavbarDropdownLink(dropdownIndex)}
+                                                        onMouseLeave={handleMouseLeaveNavbarDropdownLink}
+                                                        style={{ position: 'relative' }}  
                                                     >
-                                                        {dropdownLink}
-                                                    </a>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                </li>
-                            ))}
+                                                        <a 
+                                                            href={`/${link.name.toLowerCase()}/${dropdownLink.toLowerCase().replace(' ', '-')}`}
+                                                            style={navbarLinksDropdownStyle(dropdownIndex)}
+                                                        >
+                                                            {dropdownLink}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
                 </div>
