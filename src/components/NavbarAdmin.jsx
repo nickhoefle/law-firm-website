@@ -125,6 +125,26 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
         }
     };
 
+    const moveLinkUp = (index) => {
+        if (index === 0) return; // Can't move the first link up
+        const updatedLinks = [...localSettings.navbarLinks];
+        [updatedLinks[index - 1], updatedLinks[index]] = [updatedLinks[index], updatedLinks[index - 1]];
+        setLocalSettings({
+            ...localSettings,
+            navbarLinks: updatedLinks
+        });
+    };
+    
+    const moveLinkDown = (index) => {
+        if (index === localSettings.navbarLinks.length - 1) return; // Can't move the last link down
+        const updatedLinks = [...localSettings.navbarLinks];
+        [updatedLinks[index + 1], updatedLinks[index]] = [updatedLinks[index], updatedLinks[index + 1]];
+        setLocalSettings({
+            ...localSettings,
+            navbarLinks: updatedLinks
+        });
+    };
+
     return (
         <div>
             <h2>Admin Portal</h2>
@@ -290,21 +310,24 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                             Is Dropdown
                         </label>
                         {link.isDropdownLink && (
-                            <div style={{ marginLeft: '20px' }}>
+                            <div>
                                 {link.dropdownLinks.map((dropdownLink, dropdownIndex) => (
                                     <div key={dropdownIndex}>
                                         <input
                                             type="text"
                                             value={dropdownLink}
-                                            placeholder="Dropdown Link"
+                                            placeholder="Dropdown Link Name"
                                             onChange={handleDropdownLinkChange(index, dropdownIndex)}
                                         />
-                                        <button type="button" onClick={removeDropdownLink(index, dropdownIndex)}>Remove</button>
+                                        <button type="button" onClick={removeDropdownLink(index, dropdownIndex)}>Remove Dropdown</button>
                                     </div>
                                 ))}
                                 <button type="button" onClick={addDropdownLink(index)}>Add Dropdown Link</button>
                             </div>
                         )}
+                        <br />
+                        <button type="button" onClick={() => moveLinkUp(index)}>Move Up</button>
+                        <button type="button" onClick={() => moveLinkDown(index)}>Move Down</button>
                     </div>
                 ))}
                 <button type="button" onClick={addLinkInput}>Add Link</button>
