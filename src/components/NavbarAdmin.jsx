@@ -145,6 +145,32 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
         });
     };
 
+    const moveDropdownLinkUp = (linkIndex, dropdownIndex) => () => {
+        if (dropdownIndex === 0) return; // Prevent moving the first one up
+        const updatedLinks = [...localSettings.navbarLinks];
+        const dropdownLinks = updatedLinks[linkIndex].dropdownLinks;
+        const temp = dropdownLinks[dropdownIndex - 1];
+        dropdownLinks[dropdownIndex - 1] = dropdownLinks[dropdownIndex];
+        dropdownLinks[dropdownIndex] = temp;
+        setLocalSettings({
+            ...localSettings,
+            navbarLinks: updatedLinks,
+        });
+    };
+    
+    const moveDropdownLinkDown = (linkIndex, dropdownIndex) => () => {
+        const updatedLinks = [...localSettings.navbarLinks];
+        const dropdownLinks = updatedLinks[linkIndex].dropdownLinks;
+        if (dropdownIndex === dropdownLinks.length - 1) return; // Prevent moving the last one down
+        const temp = dropdownLinks[dropdownIndex + 1];
+        dropdownLinks[dropdownIndex + 1] = dropdownLinks[dropdownIndex];
+        dropdownLinks[dropdownIndex] = temp;
+        setLocalSettings({
+            ...localSettings,
+            navbarLinks: updatedLinks,
+        });
+    };
+
     return (
         <div>
             <h2>Admin Portal</h2>
@@ -310,16 +336,32 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                             Is Dropdown
                         </label>
                         {link.isDropdownLink && (
-                            <div>
+                            <div style={{ marginLeft: '20px' }}>
                                 {link.dropdownLinks.map((dropdownLink, dropdownIndex) => (
                                     <div key={dropdownIndex}>
                                         <input
                                             type="text"
                                             value={dropdownLink}
-                                            placeholder="Dropdown Link Name"
+                                            placeholder="Dropdown Link"
                                             onChange={handleDropdownLinkChange(index, dropdownIndex)}
                                         />
-                                        <button type="button" onClick={removeDropdownLink(index, dropdownIndex)}>Remove Dropdown</button>
+                                        <button type="button" onClick={removeDropdownLink(index, dropdownIndex)}>
+                                            Remove
+                                        </button>
+                                        
+                                        {/* Move Up Button */}
+                                        {dropdownIndex > 0 && (
+                                            <button type="button" onClick={moveDropdownLinkUp(index, dropdownIndex)}>
+                                                Move Up
+                                            </button>
+                                        )}
+                                        
+                                        {/* Move Down Button */}
+                                        {dropdownIndex < link.dropdownLinks.length - 1 && (
+                                            <button type="button" onClick={moveDropdownLinkDown(index, dropdownIndex)}>
+                                                Move Down
+                                            </button>
+                                        )}
                                     </div>
                                 ))}
                                 <button type="button" onClick={addDropdownLink(index)}>Add Dropdown Link</button>
