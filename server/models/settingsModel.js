@@ -9,6 +9,9 @@ const NavbarLinkSchema = new mongoose.Schema({
 const SettingsSchema = new mongoose.Schema({
     navbarHeight: { type: String, default: '60px' },
     navbarFont: { type: String, default: 'Arial, sans-serif' },
+    navbarBackgroundColorGradient: { type: Boolean, default: false },
+    navbarBackgroundColorGradientStart: { type: String, default: 'red'},
+    navbarBackgroundColorGradientEnd: { type: String, default: 'orange' },
     navbarBackgroundColor: { type: String, default: 'blue' },
     navbarRoundedBorder: { type: Boolean, default: false },
     navbarTopLeftBorderRadius: { type: Number, default: 0 },

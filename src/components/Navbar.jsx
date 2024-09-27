@@ -69,7 +69,8 @@ const Navbar = ({ settings }) => {
             <nav 
                 style={{ 
                     height: settings.navbarHeight, 
-                    backgroundColor: settings.navbarBackgroundColor, 
+                    backgroundColor: !settings.navbarBackgroundColorGradient ? settings.navbarBackgroundColor : 'none', 
+                    backgroundImage: settings.navbarBackgroundColorGradient ? `linear-gradient(${settings.navbarBackgroundColorGradientStart}, ${settings.navbarBackgroundColorGradientEnd})` : 'none',
                     fontFamily: settings.navbarFont,
                     position: 'relative',
                     borderTopLeftRadius: settings.navbarRoundedBorder ? `${settings.navbarTopLeftBorderRadius}px` : 0,

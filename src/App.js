@@ -9,6 +9,9 @@ const useSettings = () => {
     const [settings, setSettings] = useState({
         navbarHeight: '60px',
         navbarFont: 'Arial, sans-serif',
+        navbarBackgroundColorGradient: false,
+        navbarBackgroundColorGradientStart: 'red',
+        navbarBackgroundColorGradientEnd: 'orange',
         navbarBackgroundColor: '#0000FF',
         navbarRoundedBorder: false,
         navbarTopLeftBorderRadius: 0,

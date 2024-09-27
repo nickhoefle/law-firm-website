@@ -126,7 +126,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
     };
 
     const moveLinkUp = (index) => {
-        if (index === 0) return; // Can't move the first link up
+        if (index === 0) return; 
         const updatedLinks = [...localSettings.navbarLinks];
         [updatedLinks[index - 1], updatedLinks[index]] = [updatedLinks[index], updatedLinks[index - 1]];
         setLocalSettings({
@@ -136,7 +136,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
     };
     
     const moveLinkDown = (index) => {
-        if (index === localSettings.navbarLinks.length - 1) return; // Can't move the last link down
+        if (index === localSettings.navbarLinks.length - 1) return;
         const updatedLinks = [...localSettings.navbarLinks];
         [updatedLinks[index + 1], updatedLinks[index]] = [updatedLinks[index], updatedLinks[index + 1]];
         setLocalSettings({
@@ -146,7 +146,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
     };
 
     const moveDropdownLinkUp = (linkIndex, dropdownIndex) => () => {
-        if (dropdownIndex === 0) return; // Prevent moving the first one up
+        if (dropdownIndex === 0) return; 
         const updatedLinks = [...localSettings.navbarLinks];
         const dropdownLinks = updatedLinks[linkIndex].dropdownLinks;
         const temp = dropdownLinks[dropdownIndex - 1];
@@ -161,7 +161,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
     const moveDropdownLinkDown = (linkIndex, dropdownIndex) => () => {
         const updatedLinks = [...localSettings.navbarLinks];
         const dropdownLinks = updatedLinks[linkIndex].dropdownLinks;
-        if (dropdownIndex === dropdownLinks.length - 1) return; // Prevent moving the last one down
+        if (dropdownIndex === dropdownLinks.length - 1) return; 
         const temp = dropdownLinks[dropdownIndex + 1];
         dropdownLinks[dropdownIndex + 1] = dropdownLinks[dropdownIndex];
         dropdownLinks[dropdownIndex] = temp;
@@ -289,13 +289,46 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
             </label>
             <br />
             <label>
-                Navbar Background Color:
+                Gradient Navbar Background Color?
                 <input
-                    type="color"
-                    value={localSettings.navbarBackgroundColor}
-                    onChange={handleInputChange('navbarBackgroundColor')}
+                    type="checkbox"
+                    checked={localSettings.navbarBackgroundColorGradient}
+                    onChange={handleCheckboxChange('navbarBackgroundColorGradient')}
                 />
             </label>
+            <br />
+            { localSettings.navbarBackgroundColorGradient && (
+                <>
+                    <label>
+                        Gradient Color - Start
+                        <input
+                            type="color"
+                            value={localSettings.navbarBackgroundColorGradientStart}
+                            onChange={handleInputChange('navbarBackgroundColorGradientStart')}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Gradient Color - End
+                        <input
+                            type="color"
+                            value={localSettings.navbarBackgroundColorGradientEnd}
+                            onChange={handleInputChange('navbarBackgroundColorGradientEnd')}
+                        />
+                    </label>
+                </>
+                
+            )}
+            { !localSettings.navbarBackgroundColorGradient && (
+                <label>
+                    Navbar Background Color:
+                    <input
+                        type="color"
+                        value={localSettings.navbarBackgroundColor}
+                        onChange={handleInputChange('navbarBackgroundColor')}
+                    />
+                </label>
+            )}
             <br />
             <label>
                 Enable Box on Navbar Link Hover
