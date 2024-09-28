@@ -70,7 +70,13 @@ const Navbar = ({ settings }) => {
                 style={{ 
                     height: settings.navbarHeight, 
                     backgroundColor: !settings.navbarBackgroundColorGradient ? settings.navbarBackgroundColor : 'none', 
-                    backgroundImage: settings.navbarBackgroundColorGradient ? `linear-gradient(${settings.navbarBackgroundColorGradientStart}, ${settings.navbarBackgroundColorGradientEnd})` : 'none',
+                    backgroundImage: settings.navbarBackgroundColorGradient 
+                        ? `linear-gradient(
+                            ${settings.navbarBackgroundColorGradientDirection === 'horizontal' ? 'to right' : 'to bottom'}, 
+                            ${settings.navbarBackgroundColorGradientStart}, 
+                            ${settings.navbarBackgroundColorGradientEnd}
+                        )`
+                        : 'none',
                     fontFamily: settings.navbarFont,
                     position: 'relative',
                     borderTopLeftRadius: settings.navbarRoundedBorder ? `${settings.navbarTopLeftBorderRadius}px` : 0,

@@ -92,10 +92,10 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
         });
     };
 
-    const handleRadioChange = (e) => {
+    const handleRadioChange = (key) => (e) => {
         setLocalSettings({
             ...localSettings,
-            navbarLinksHorizontalPlacement: e.target.value
+            [key]: e.target.value
         });
     };
 
@@ -316,6 +316,24 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                             onChange={handleInputChange('navbarBackgroundColorGradientEnd')}
                         />
                     </label>
+                    <label>
+                        <input
+                            type="radio"
+                            value="vertical"
+                            checked={localSettings.navbarBackgroundColorGradientDirection === 'vertical'}
+                            onChange={handleRadioChange('navbarBackgroundColorGradientDirection')}
+                        />
+                        Vertical
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            value="horizontal"
+                            checked={localSettings.navbarBackgroundColorGradientDirection === 'horizontal'}
+                            onChange={handleRadioChange('navbarBackgroundColorGradientDirection')}
+                        />
+                        Horizontal
+                    </label>
                 </>
                 
             )}
@@ -433,7 +451,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                             type="radio"
                             value="left"
                             checked={localSettings.navbarLinksHorizontalPlacement === 'left'}
-                            onChange={handleRadioChange}
+                            onChange={handleRadioChange('navbarLinksHorizontalPlacement')}
                         />
                         Left
                     </label>
@@ -442,7 +460,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                             type="radio"
                             value="center"
                             checked={localSettings.navbarLinksHorizontalPlacement === 'center'}
-                            onChange={handleRadioChange}
+                            onChange={handleRadioChange('navbarLinksHorizontalPlacement')}
                         />
                         Center
                     </label>
@@ -451,7 +469,7 @@ const NavbarAdmin = ({ settings, onSettingsChange }) => {
                             type="radio"
                             value="right"
                             checked={localSettings.navbarLinksHorizontalPlacement === 'right'}
-                            onChange={handleRadioChange}
+                            onChange={handleRadioChange('navbarLinksHorizontalPlacement')}
                         />
                         Right
                     </label>

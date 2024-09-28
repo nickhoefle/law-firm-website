@@ -10,6 +10,7 @@ const useSettings = () => {
         navbarHeight: '60px',
         navbarFont: 'Arial, sans-serif',
         navbarBackgroundColorGradient: false,
+        navbarBackgroundColorGradientDirection: 'vertical',
         navbarBackgroundColorGradientStart: 'red',
         navbarBackgroundColorGradientEnd: 'orange',
         navbarBackgroundColor: '#0000FF',

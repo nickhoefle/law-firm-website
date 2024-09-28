@@ -10,6 +10,7 @@ const SettingsSchema = new mongoose.Schema({
     navbarHeight: { type: String, default: '60px' },
     navbarFont: { type: String, default: 'Arial, sans-serif' },
     navbarBackgroundColorGradient: { type: Boolean, default: false },
+    navbarBackgroundColorGradientDirection: { type: String, default: 'vertical' },
     navbarBackgroundColorGradientStart: { type: String, default: 'red'},
     navbarBackgroundColorGradientEnd: { type: String, default: 'orange' },
     navbarBackgroundColor: { type: String, default: 'blue' },
